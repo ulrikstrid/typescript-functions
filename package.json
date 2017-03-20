@@ -1,0 +1,19 @@
+{
+  "name": "typescript-functions",
+  "version": "1.0.0",
+  "description": "Run typescript in azure functions",
+  "main": "index.js",
+  "repository": {},
+  "author": "Ulrik Strid",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "postinstall": "npm run build"
+  },
+  "dependencies": {
+    "typescript": "^2.2.1"
+  },
+  "devDependencies": {
+    "@types/node": "^7.0.8"
+  }
+}
