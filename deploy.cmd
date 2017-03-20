@@ -60,7 +60,15 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
   IF !ERRORLEVEL! NEQ 0 goto error
 )
 
-:: 2. Restore npm
+:: 2. Install npm packages and run typescript
+IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
+  pushd "%DEPLOYMENT_TARGET%"
+  npm install --production
+  IF !ERRORLEVEL! NEQ 0 goto error
+  popd
+)
+
+:: 3. Restore npm in each function
 FOR /F "tokens=*" %%i IN ('DIR /B %DEPLOYMENT_TARGET% /A:D') DO (
   IF EXIST "%DEPLOYMENT_TARGET%\%%i\package.json" (
     pushd "%DEPLOYMENT_TARGET%\%%i"
