@@ -11,8 +11,9 @@
     "postinstall": "npm run build"
   },
   "dependencies": {
-    "@types/node": "^7.0.8",
     "typescript": "^2.2.1"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "@types/node": "^7.0.8"
+  }
 }

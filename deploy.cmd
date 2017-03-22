@@ -63,7 +63,7 @@ IF /I "%IN_PLACE_DEPLOYMENT%" NEQ "1" (
 :: 2. Install npm packages and run typescript
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
-  npm install --production
+  npm install
   IF !ERRORLEVEL! NEQ 0 goto error
   popd
 )
