@@ -3,7 +3,10 @@
   "version": "1.0.0",
   "description": "Run typescript in azure functions",
   "main": "index.js",
-  "repository": {},
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:ulrikaugustsson/typescript-functions.git"
+  },
   "author": "Ulrik Strid",
   "license": "MIT",
   "scripts": {
