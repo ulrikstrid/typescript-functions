@@ -9,19 +9,22 @@ const data: { name: string } = JSON.parse(sampleDat);
 test('Http trigger with body success', () => {
   const mockContext: Context = {
     done: (err, response) => {
-      expect(err).toBeNull();
+      // As everything is passed to the done function we can do our asserts here.
+      expect(err).toBeNull(); // We never call the done function with a Error.
 
-      expect(response.status).toBe(200);
-      expect(response.body).toBe('Hello ' + data.name);
+      expect(response.status).toBe(200); // When we succeed it should be 200.
+      expect(response.body).toBe('Hello ' + data.name); // The response body built as in the function.
     },
-    log: () => { },
+    log: () => { }, // We can use a jest mock here if the logs are important to us, but in this case it is not.
   };
 
+  // This is the request we will use to test our function.
   const mockRequest: HttpRequest = {
-    body: data,
+    body: data, // The data from sample.dat
     query: {},
   };
 
+  // Call the function
   httpTriggerTS(mockContext, mockRequest);
 });
 
