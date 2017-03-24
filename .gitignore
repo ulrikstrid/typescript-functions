@@ -24,3 +24,4 @@ appsettings.json
 
 node_modules
 /**/*.js
+coverage
