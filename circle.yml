@@ -1,0 +1,46 @@
+general:
+  branches:
+    beta:
+      - ignore
+    production:
+      - ignore
+
+version: 2
+jobs:
+  build:
+    working_directory: ~/functions-blog
+
+    docker:
+      - image: node:6.10.0
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          key: functions-blog-{{ .Branch }}-{{ checksum "package.json" }}
+          
+      - run:
+          name: Install dependencies
+          command: npm install
+
+      - save_cache:
+          key: functions-blog-{{ .Branch }}-{{ checksum "package.json" }}
+          paths:
+            - "node_modules"
+      - run:
+          name: Install Dependencies
+          command: npm install
+      - run:
+          name: NPM Test
+          command: npm test -- --coverage
+          
+      - store_artifacts:
+          path: ~/functions-blog/coverage
+          destination: coverage
+
+      # Deploy production
+      - deploy:
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ];
+              then ./scripts/publish.sh production;
+            fi
