@@ -1,8 +1,8 @@
-import { httpTriggerTS, HttpRequest, HttpResponse, Context } from '../httpTriggerTS';
+import { httpTriggerTS, HttpRequest, HttpResponse, Context } from '../HttpTriggerTS/httpTriggerTS';
 import * as fs from 'fs';
 import * as path from 'path';
 
-const dataPath = path.join(__dirname, '../sample.dat');
+const dataPath = path.join(__dirname, '../HttpTriggerTS/sample.dat');
 const sampleDat = fs.readFileSync(dataPath, { encoding: 'utf8' });
 const data: { name: string } = JSON.parse(sampleDat);
 
